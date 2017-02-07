@@ -189,7 +189,8 @@ class JoyentCloud():
 
     def login(self):
         try:
-            self.sdc = DataCenter(location=self.location, key_id=self.key_id, secret=self.id_rsa, allow_agent=True,
+            #TODO Fix allow_agent=True
+            self.sdc = DataCenter(location=self.location, key_id=self.key_id, secret=self.id_rsa, allow_agent=False,
                                   verbose=False)
             self.sdc.datasets()
         except Exception as e:
@@ -366,8 +367,8 @@ def main():
         argument_spec=dict(
             name=dict(default=None, required=True),
             state=dict(default="present", choices=["absent", "present", "running", "stopped"]),
-            image=dict(default="sdc:canonical:ubuntu-certified-12.04:20140806"),
-            flavor=dict(default="g3-standard-0.625-kvm"),
+            image=dict(default="1996a1d6-c0d9-11e6-8b80-4772e39dc920"),
+            flavor=dict(default="g4-highcpu-256M"),
             networks=dict(default=None),
             data_center=dict(default="eu-ams-1", choices=["eu-ams-1", "us-west-1", "us-east-1"]),
             key_name=dict(default=None),

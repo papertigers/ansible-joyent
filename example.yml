@@ -1,0 +1,14 @@
+---
+#Ansible joyent
+- name: test joyent module
+  vars: 
+   - ansible_python_interpreter: python
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - name: create instance
+    joyent:
+      name: testinstance
+      private_key: ~/.ssh/triton_other_rsa
+      state: present
