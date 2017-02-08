@@ -370,7 +370,7 @@ def main():
             image=dict(default="1996a1d6-c0d9-11e6-8b80-4772e39dc920"),
             flavor=dict(default="g4-highcpu-256M"),
             networks=dict(default=None),
-            data_center=dict(default="eu-ams-1", choices=["eu-ams-1", "us-west-1", "us-east-1"]),
+            data_center=dict(default="eu-ams-1", choices=["eu-ams-1", "us-west-1", "us-sw-1", "us-east-1", "us-east-3b"]),
             key_name=dict(default=None),
             user_name=dict(default=None),
             private_key=dict(default="~/.ssh/id_rsa", no_log=True),
