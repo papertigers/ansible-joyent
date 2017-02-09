@@ -55,16 +55,16 @@ options:
         default: 'sdc:canonical:ubuntu-certified-12.04:20140806'
         aliases: ['']
 
-    flavor:
+    package:
         description:
-          - Instance flavor name, required for creation of an instances
+          - Instance package name, required for creation of an instances
         required: False
         default: 'g3-standard-0.625-kvm"'
         aliases: ['']
 
     networks:
         description:
-          - Instance network(s) comma separated.
+          - Instance network(s) as a list.
         required: False
         default: null
         aliases: ['']
@@ -172,11 +172,10 @@ class JoyentCloud():
         self.name = self.module.params["name"]
         self.state = self.module.params["state"]
         self.dataset = self.module.params["image"]
-        self.package = self.module.params["flavor"]
+        self.package = self.module.params["package"]
         self.time_out = self.module.params["time_out"]
         if self.module.params["networks"]:
-            #TODO to a strip to cut white spaces
-            self.networks = self.module.params["networks"].split(",")
+            self.networks = self.module.params["networks"]
         else:
             self.networks = None
         if self.module.params["tags"]:
@@ -368,8 +367,8 @@ def main():
             name=dict(default=None, required=True),
             state=dict(default="present", choices=["absent", "present", "running", "stopped"]),
             image=dict(default="1996a1d6-c0d9-11e6-8b80-4772e39dc920"),
-            flavor=dict(default="g4-highcpu-256M"),
-            networks=dict(default=None),
+            package=dict(default="g4-highcpu-256M"),
+            networks=dict(default=None, type="list"),
             data_center=dict(default="eu-ams-1", choices=["eu-ams-1", "us-west-1", "us-sw-1", "us-east-1", "us-east-3b"]),
             key_name=dict(default=None),
             user_name=dict(default=None),
